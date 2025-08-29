@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://q72n6p2mss0f"]
+
+[ext_resource type="Texture2D" uid="uid://cry6kt1nvh05d" path="res://assets/trash_bin-removebg-preview.png" id="1_avkd5"]
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(501, 229)
+texture = ExtResource("1_avkd5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

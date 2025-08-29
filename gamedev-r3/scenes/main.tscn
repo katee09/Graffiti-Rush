@@ -1,0 +1,86 @@
+[gd_scene load_steps=9 format=3 uid="uid://242q7if2ytjb"]
+
+[ext_resource type="Script" uid="uid://bhlvgs208bx4p" path="res://scenes/scripts/main.gd" id="1_o5qli"]
+[ext_resource type="Texture2D" uid="uid://cbsrmnx3fko66" path="res://assets/10.png" id="2_sugp2"]
+[ext_resource type="PackedScene" uid="uid://q72n6p2mss0f" path="res://trash.tscn" id="2_tbgi4"]
+[ext_resource type="Texture2D" uid="uid://d8oyjgnntjcg" path="res://assets/IndustrialTile_29.png" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://cm01jst6ai65i" path="res://bird.tscn" id="3_tefeu"]
+[ext_resource type="Texture2D" uid="uid://chmj7hpylek41" path="res://assets/Walk.png" id="5_tefeu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
+size = Vector2(174, 333)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tefeu"]
+distance = -321.0
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_o5qli")
+TRASH_SCENE = ExtResource("2_tbgi4")
+BIRD_SCENE = ExtResource("3_tefeu")
+BG1_PATH = NodePath("BG1")
+BG2_PATH = NodePath("BG2")
+PLAYER_PATH = NodePath("Player")
+TRASH_Y_MARKER_PATH = NodePath("Markers/TrashY")
+BIRD_Y_MARKER_PATH = NodePath("Markers/BirdY")
+TIME_LABEL_PATH = NodePath("CanvasLayer/TimeLabel")
+HITS_LABEL_PATH = NodePath("CanvasLayer/HitsLabel")
+BIG_LABEL_PATH = NodePath("CanvasLayer/BigLabel")
+
+[node name="BG1" type="Sprite2D" parent="."]
+position = Vector2(-3.99997, -1.00006)
+scale = Vector2(0.51196, 0.51196)
+texture = ExtResource("2_sugp2")
+
+[node name="BG2" type="Sprite2D" parent="."]
+position = Vector2(-1177, -1)
+scale = Vector2(0.51196, 0.51196)
+texture = ExtResource("2_sugp2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-684.156, 346)
+scale = Vector2(80.8027, 3.95313)
+texture = ExtResource("3_jyhfs")
+
+[node name="Player" type="CharacterBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+position = Vector2(-449, 156.5)
+shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player"]
+position = Vector2(-435, 152)
+scale = Vector2(2.8125, 2.8125)
+texture = ExtResource("5_tefeu")
+
+[node name="Markers" type="Node2D" parent="."]
+
+[node name="TrashY" type="Marker2D" parent="Markers"]
+position = Vector2(396, -903)
+
+[node name="BirdY" type="Marker2D" parent="Markers"]
+position = Vector2(700, -575)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer"]
+anchors_preset = -1
+anchor_right = 0.128
+offset_left = -19.0
+offset_right = -107.456
+offset_bottom = 23.0
+
+[node name="HitsLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="BigLabel" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, 5)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_tefeu")
